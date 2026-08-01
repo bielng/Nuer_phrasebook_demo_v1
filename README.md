@@ -40,7 +40,7 @@ The project was a collaboration between researchers at the University of Surrey 
 
 Please cite the original resource as:
 
-> Bond, Oliver, Tatiana Reid, Irina Monich and Matthew Baerman. 2020. *Nuer Lexicon*. Available at: https://www.nuerlexicon.com. Accessed 1 August 2026.
+> Bond, Oliver, Tatiana Reid, Irina Monich and Matthew Baerman. 2020. *Nuer Lexicon*. Available at: https://www.nuerlexicon.com
 
 This project extends the availability of Nuer language resources by providing an interactive Nuer (Thok Naath) phrasebook with searchable entries, dialect filtering, pronunciation support, and audio playback.
 
