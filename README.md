@@ -32,6 +32,7 @@ All 401 entries live in `src/data/entries.json`. Add, edit, or remove
 entries there and the phrasebook (search, filters, cards) updates
 automatically — no other code changes required.
 
+
 ## Data source and citation
 
 The Nuer Lexicon data used in this project is based on the work of the Nuer Lexicon project, developed as part of an Arts and Humanities Research Council (AHRC) funded research project investigating the wordforms of the Nuer language.
@@ -53,3 +54,15 @@ npm run preview
 
 `dist/` is the static build you can deploy anywhere (Vercel, Netlify, GitHub
 Pages, etc.) — just make sure `public/audio/` ships alongside it.
+
+
+## License
+
+### Software License
+
+The source code of this project is licensed under the MIT License.
+
+Copyright (c) 2026 Dayom Technologies
+
+See the [LICENSE](LICENSE) file for the full license text.
+
