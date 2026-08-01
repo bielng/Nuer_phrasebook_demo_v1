@@ -32,6 +32,18 @@ All 401 entries live in `src/data/entries.json`. Add, edit, or remove
 entries there and the phrasebook (search, filters, cards) updates
 automatically — no other code changes required.
 
+## Data source and citation
+
+The Nuer Lexicon data used in this project is based on the work of the Nuer Lexicon project, developed as part of an Arts and Humanities Research Council (AHRC) funded research project investigating the wordforms of the Nuer language.
+
+The project was a collaboration between researchers at the University of Surrey and the University of Edinburgh and was hosted by the Surrey Morphology Group. The project team included Matthew Baerman, Oliver Bond, Irina Monich, Tatiana Reid, and Bert Remijsen, with contributions from Nuer speakers in South Sudan, Kenya, the UK, and the USA.
+
+Please cite the original resource as:
+
+> Bond, Oliver, Tatiana Reid, Irina Monich and Matthew Baerman. 2020. *Nuer Lexicon*. Available at: https://www.nuerlexicon.com. Accessed 1 August 2026.
+
+This project extends the availability of Nuer language resources by providing an interactive Nuer (Thok Naath) phrasebook with searchable entries, dialect filtering, pronunciation support, and audio playback.
+
 ## Build for production
 
 ```bash
