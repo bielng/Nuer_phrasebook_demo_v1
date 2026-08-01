@@ -21,7 +21,7 @@ Then open the local URL Vite prints (usually `http://localhost:5173`).
 
 ## Adding audio
 
-Drop your `.mp3` recordings into `public/audio/`, matching the filenames
+Drop the `.mp3` recordings into `public/audio/`, matching the filenames
 already listed in `src/data/entries.json` (e.g. `ID1_nom_sg_02.mp3`). See
 `public/audio/README.md` for details. Entries without an audio file simply
 won't show a speaker button — nothing else to configure.
