@@ -42,7 +42,7 @@ const NUER_KEYBOARD_ROWS = [
 ];
 
 const TEAM_MEMBERS = [
-  { id: 't1', name: 'Taban', role: 'CO-FOUNDER & MACHINE LEARNING ENGINEER', bio: 'Visionary leader driving the intersection of AI, Nuer language technology, and community development.' },
+  { id: 't1', name: 'Taban', role: 'CO-FOUNDER & DATA SCIENTIST', bio: 'Visionary leader driving the intersection of AI, Nuer language technology, and community development.' },
   { id: 't2', name: 'Gatmach', role: 'CO-FOUNDER & MACHINE LEARNING ENGINEER', bio: 'Co-founder leading machine learning engineering, model training, and Nuer language model architectures.' },
   { id: 't3', name: 'Bhang', role: 'CO-FOUNDER & FOUNDING SOFTWARE ENGINEER', bio: 'Co-founder and founding software engineer building platform infrastructure, APIs, and interfaces.' },
   { id: 't4', name: 'Luka', role: 'CO-FOUNDER & LANGUAGE / NLP EXPERT', bio: 'Co-founder, writer, language expert, and NLP specialist preserving Nuer linguistic accuracy and cultural nuance.' },
