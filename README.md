@@ -64,5 +64,5 @@ The source code of this project is licensed under the MIT License.
 
 Copyright (c) 2026 Dayom Technologies
 
-See the [LICENSE.md](LICENSE) file for the full license text.
+See the [LICENSE](LICENSE.md) file for the full license text.
 
