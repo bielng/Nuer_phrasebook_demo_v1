@@ -11,7 +11,7 @@ import {
 import { translateText } from "../services/translate";
 
 const SAMPLE_INPUTS = [
-  "Volunteer-built by the Dayom AI team for Nuer language preservation.",
+  "Nuer language preservation.",
   "Many people make a living by herding cattle and farming",
   "I wanna go to Kenya",
   "It contains the Sudd, which is one of the biggest wetlands in the entire world.",
