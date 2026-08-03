@@ -1,12 +1,19 @@
 # Nuer Phrasebook
 
-A simple React (Vite) website for browsing the Nuer (Thok Naath) dictionary —
-search, filter by word category and dialect, a built-in Thok Naath keyboard
-for typing special characters, and pronunciation audio playback.
-
-Trimmed down from the original Nuer AI Studio project: no machine
-translation, TTS, LLM chat, or ASR — just the phrasebook, blog, and
+A React (Vite) website for the Nuer (Thok Naath) language project —
+a searchable dictionary (filter by word category and dialect, a built-in
+Thok Naath keyboard for typing special characters, pronunciation audio
+playback), an English ⇄ Nuer machine translator, plus blog and
 about/team pages.
+
+## Translator
+
+The **Translate** tab calls the `dayomtechnologies/English_to_Nuer_Translator`
+Hugging Face Space (a fine-tuned NLLB-600M model) via `@gradio/client`. See
+`src/services/translate.js` for the request logic and
+`src/components/TranslatorView.jsx` for the UI. No API key is needed since
+Gradio Spaces are called directly from the browser — just note that a
+sleeping Space can take 30–90s to spin back up on the first request.
 
 ## Run locally
 
@@ -65,4 +72,3 @@ The source code of this project is licensed under the MIT License.
 Copyright (c) 2026 Dayom Technologies
 
 See the [LICENSE](LICENSE.md) file for the full license text.
-
