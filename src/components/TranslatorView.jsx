@@ -11,9 +11,10 @@ import {
 import { translateText } from "../services/translate";
 
 const SAMPLE_INPUTS = [
-  "Hello, how are you today?",
-  "Welcome to South Sudan",
-  "Language preservation is essential",
+  "",
+  "Many people make a living by herding cattle and farming",
+  "I wanna go to Kenya",
+  "It contains the Sudd, which is one of the biggest wetlands in the entire world.",
   "Ɣän cieŋä kä Kenya",
 ];
 
