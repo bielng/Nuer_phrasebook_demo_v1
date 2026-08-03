@@ -642,6 +642,7 @@ export default function App() {
   const [mode, setMode] = useState("phrasebook");
   const tabs = [
     { id: "phrasebook", label: "Phrasebook", icon: BookOpen },
+    { id: "translate", label: "Translate", icon: Languages },
     { id: "blog", label: "Blog", icon: FileText },
     { id: "team", label: "About & Team", icon: Users },
   ];
@@ -687,6 +688,7 @@ export default function App() {
         className='w-full flex-1 animate-[fadeIn_0.25s_ease-out]'
       >
         {mode === "phrasebook" && <PhrasebookView />}
+        {mode === "translate" && <TranslatorView />}
         {mode === "team" && <TeamView />}
         {mode === "blog" && <BlogView />}
       </main>
