@@ -9,6 +9,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { translateText } from "../services/translate";
+import { synthesizeNuerSpeech } from "../services/tts";
 
 const SAMPLE_INPUTS = [
   "Nuer language preservation.",
@@ -26,6 +27,7 @@ export default function TranslatorView() {
   const [error, setError] = useState(null);
   const [copied, setCopied] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [speakError, setSpeakError] = useState(null);
 
   const sourceLabel =
     direction === "en-to-nus" ? "English" : "Nuer (Thok Naath)";
@@ -71,9 +73,30 @@ export default function TranslatorView() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSpeak = () => {
-    if (!translationResult) return;
+  const handleSpeak = async () => {
+    if (!translationResult || isSpeaking) return;
+    setSpeakError(null);
     setIsSpeaking(true);
+
+    // Target is Nuer: use our fine-tuned Nuer voice model.
+    if (direction === "en-to-nus") {
+      try {
+        const url = await synthesizeNuerSpeech(translationResult);
+        const audio = new Audio(url);
+        audio.onended = () => setIsSpeaking(false);
+        audio.onerror = () => setIsSpeaking(false);
+        await audio.play();
+      } catch (err) {
+        console.error("TTS error:", err);
+        setSpeakError(
+          "Couldn't reach the voice model — it may be waking up from sleep. Try again shortly.",
+        );
+        setIsSpeaking(false);
+      }
+      return;
+    }
+
+    // Target is English: browser voices are fine here.
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(translationResult);
       utterance.rate = 0.9;
@@ -210,6 +233,13 @@ export default function TranslatorView() {
           <div className='flex items-start gap-2 bg-[#F1E7D4] border border-[#E3D2B0] rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm text-[#9C5A22]'>
             <AlertCircle className='w-4 h-4 shrink-0 mt-0.5' />
             <span>{error}</span>
+          </div>
+        )}
+
+        {speakError && (
+          <div className='flex items-start gap-2 bg-[#F1E7D4] border border-[#E3D2B0] rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm text-[#9C5A22]'>
+            <AlertCircle className='w-4 h-4 shrink-0 mt-0.5' />
+            <span>{speakError}</span>
           </div>
         )}
       </div>

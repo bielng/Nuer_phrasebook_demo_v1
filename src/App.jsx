@@ -16,10 +16,14 @@ import {
   ArrowRight,
   Volume2,
   VolumeX,
-  Languages,
 } from "lucide-react";
 import RAW_ENTRIES from "./data/entries.json";
 import TranslatorView from "./components/TranslatorView";
+import ChatView from "./components/ChatView";
+import VoiceView from "./components/VoiceView";
+import TTSView from "./components/TTSView";
+import Dock from "./components/Dock";
+import ArticleModal from "./components/ArticleModal";
 
 // --- Full 401-entry Nuer (Thok Naath) dictionary dataset ---
 
@@ -112,6 +116,20 @@ const BLOG_POSTS = [
     summary:
       "We are open-sourcing our bidirectional NLLB-600M English–Nuer (Thok Naath) neural translation model.",
     authors: "By Gatmach & Taban",
+    content: `
+At Dayom AI, our mission is to harness state-of-the-art Natural Language Processing to preserve and digitize Indigenous East African languages. Today marks a major milestone: we are open-sourcing our fine-tuned bidirectional NLLB-600M translation model for English ↔ Nuer (Thok Naath).
+
+### Why Thok Naath Matters
+Nuer is spoken by millions of people across South Sudan, Western Ethiopia, and the global diaspora. Despite its rich oral heritage and linguistic depth, digital language tools for Nuer have historically been non-existent.
+
+### Model Architecture & Training Data
+- Base Architecture: Meta's No Language Left Behind (NLLB-600M).
+- Corpus: Parallel sentence pairs collected and verified with native speakers.
+- Goal: Bring real digital translation access to a language long left out of NLP tooling.
+
+### Open Access on Hugging Face
+The model weights are freely available at \`dayomtechnologies/nllb-600m-english-nuer\`. Developers and researchers can integrate our translation engine into web, mobile, and humanitarian applications worldwide.
+    `,
   },
   {
     id: "b2",
@@ -123,6 +141,15 @@ const BLOG_POSTS = [
     summary:
       "How Dayom AI is building native parallel corpora, proverb collections, and audio datasets with elders and linguists in South Sudan.",
     authors: "By Bhang & Luka",
+    content: `
+Building AI for low-resource languages requires much more than scraping the web — it requires active ground-level community partnership.
+
+### Community-Centric Data Collection
+We work alongside community members, storytellers, and language contributors to gather oral phrases, proverbs, and modern domain terminology in both Nuer and Dinka.
+
+### Overcoming Dialectal Nuances
+Nuer exhibits rich dialectal variations across regions. Our approach builds a standardized phonetic alignment layer that preserves local dialectal beauty while providing consistent orthographic representations for AI model training.
+    `,
   },
   {
     id: "b3",
@@ -134,6 +161,15 @@ const BLOG_POSTS = [
     summary:
       "Architecting models capable of capturing Nuer vowel length and breathy phonation.",
     authors: "By Gatmach",
+    content: `
+Nuer features a complex phonological system involving contrastive vowel length, tonality, and breathy versus voiced vowel quality. Conventional Text-To-Speech (TTS) pipelines trained on Indo-European languages struggle to reproduce these subtle linguistic markers.
+
+### Building on Meta's MMS
+Rather than training from zero, we adapted Meta's Massively Multilingual Speech (MMS) VITS-based checkpoint for Nuer, tuning it to better reflect the breathy vowels (ä, ë, ï, ö) native speakers rely on for meaning.
+
+### What's Next
+Our next step is extending this synthesis work to Dinka and integrating it directly into a real-time chat experience.
+    `,
   },
 ];
 
@@ -590,6 +626,8 @@ function TeamView() {
 
 // ---------------- Blog View ----------------
 function BlogView() {
+  const [selectedPost, setSelectedPost] = useState(null);
+
   return (
     <div className='w-full max-w-3xl mx-auto flex flex-col items-center'>
       <div className='text-center mb-4'>
@@ -605,7 +643,7 @@ function BlogView() {
           {BLOG_POSTS.map((post) => (
             <div
               key={post.id}
-              className='bg-[#FFFCF6] rounded-2xl p-4 sm:p-5 border border-[#DFC9A4] space-y-2.5'
+              className='bg-[#FFFCF6] rounded-2xl p-4 sm:p-5 border border-[#DFC9A4] space-y-2.5 hover:border-[#BD5A26]/40 transition-colors'
             >
               <div className='flex flex-wrap items-center justify-between gap-1.5 text-xs'>
                 <span className='px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider bg-[#EDE0C4] text-[#9C5A22] border border-[#D9C098] text-[10px]'>
@@ -625,14 +663,19 @@ function BlogView() {
                 <span className='font-semibold text-[#4A4038]'>
                   {post.authors}
                 </span>
-                <span className='font-bold text-[#9C5A22] flex items-center gap-1'>
+                <button
+                  onClick={() => setSelectedPost(post)}
+                  className='font-bold text-[#9C5A22] hover:text-[#7A4419] flex items-center gap-1 cursor-pointer transition-colors'
+                >
                   Read Article <ArrowRight className='w-3.5 h-3.5' />
-                </span>
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <ArticleModal post={selectedPost} onClose={() => setSelectedPost(null)} />
     </div>
   );
 }
@@ -642,7 +685,6 @@ export default function App() {
   const [mode, setMode] = useState("phrasebook");
   const tabs = [
     { id: "phrasebook", label: "Phrasebook", icon: BookOpen },
-    { id: "translate", label: "Translate", icon: Languages },
     { id: "blog", label: "Blog", icon: FileText },
     { id: "team", label: "About & Team", icon: Users },
   ];
@@ -689,11 +731,17 @@ export default function App() {
       >
         {mode === "phrasebook" && <PhrasebookView />}
         {mode === "translate" && <TranslatorView />}
+        {mode === "voice" && <VoiceView />}
+        {mode === "chat" && <ChatView />}
+        {mode === "tts" && <TTSView />}
         {mode === "team" && <TeamView />}
         {mode === "blog" && <BlogView />}
       </main>
 
-      <footer className='text-center text-[10px] sm:text-xs text-[#8A7D68] mt-6'>
+      {/* Bottom AI tools dock: Translate, Voice, Chat, TTS */}
+      <Dock mode={mode} onSelectMode={setMode} />
+
+      <footer className='text-center text-[10px] sm:text-xs text-[#8A7D68] mt-4'>
         Nuer (Thok Naath) Language Preservation Project
       </footer>
     </div>
